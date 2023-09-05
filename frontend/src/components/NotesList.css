@@ -1,0 +1,8 @@
+.notes--list {
+    display: flex;
+    flex-direction: column;
+    min-height: 87vh;
+    margin-top: 3vh;
+
+}
+
