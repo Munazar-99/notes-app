@@ -1,0 +1,42 @@
+.note {
+  height: 13vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0 1rem;
+  border-bottom: 0.2px solid gray;
+}
+
+.title-container {
+  overflow-y: hidden;
+  display: flex;
+  padding-top: .5rem;
+  gap: 5px;
+  height: 8vh;
+  width: 100%;
+  margin: 0 0 0 2px;
+  font-weight: lighter;
+  white-space: nowrap;
+  text-align: justify;
+  mask-image: linear-gradient(to right,#00000030, black 0%, black 80%, #00000030 100%);
+  -webkit-mask-image: linear-gradient(to right,#00000030, black 0%, black 80%, #00000030 100%);
+
+}
+
+.note--title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0;
+  font-weight: 600;
+}
+.note--body {
+  margin: 0 0 0 2px;
+  font-weight: lighter;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+
+
