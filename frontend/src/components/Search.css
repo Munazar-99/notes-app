@@ -1,0 +1,24 @@
+.heading {
+    height: 10vh;
+    width: 100%;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.input__search {
+    width: 85%;
+    height: 8vh;
+    border: none;
+    border-bottom: .5px solid black;
+    padding: .5rem 1rem;
+    font-size: 20px;
+}
+
+.input__search::placeholder {
+    font: 20px  "Montserrat";
+}
+.input__search:focus {
+    outline: none;
+}
