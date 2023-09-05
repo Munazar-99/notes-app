@@ -1,3 +1,4 @@
+// Import necessary dependencies
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -9,21 +10,23 @@ import {
 import Homepage from './pages/Homepage';
 import Notespage from './pages/Notespage';
 
-
+// Create a router configuration
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Homepage/>,
+    path: "/",              // Define the path for the Homepage component
+    element: <Homepage />, // Render the Homepage component
   },
   {
-    path: "/note/:id",
-    element: <Notespage/>,
+    path: "/note/:id",     // Define the path for the Notespage component with a parameter 'id'
+    element: <Notespage />, // Render the Notespage component
   },
   {
-    path: "/create",
-    element: <Notespage/>,
+    path: "/create",       // Define the path for creating a note
+    element: <Notespage />, // Render the Notespage component for note creation
   },
 ]);
+
+// Create a React root and render the RouterProvider with the router
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

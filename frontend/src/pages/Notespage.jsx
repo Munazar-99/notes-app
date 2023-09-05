@@ -12,7 +12,9 @@ export default class Notespage extends Component {
     title: "",
     updated: false,
   };
+
   componentDidMount() {
+    // Check if the URL contains a note ID, if yes, fetch the note data
     const regex = /\/(\d+)/;
     const match = window.location.pathname.match(regex);
 
@@ -20,12 +22,20 @@ export default class Notespage extends Component {
       const noteId = parseInt(match[1]);
       fetch(`http://127.0.0.1:8000/api/note/${noteId}`)
         .then((res) => res.json())
-        .then((data) => this.setState({ note: data, title: data.title, body: data.body }));
+        .then((data) =>
+          this.setState({
+            note: data,
+            title: data.title,
+            body: data.body,
+          })
+        );
     } else {
       this.setState({ newNote: true });
     }
   }
+
   componentDidUpdate(prevProps, prevState) {
+    // Check if title or body has been updated
     if (
       prevState.title !== this.state.title ||
       prevState.body !== this.state.body
@@ -35,9 +45,11 @@ export default class Notespage extends Component {
   }
 
   handleBack = () => {
+    // Handle navigation back to the dashboard
     if (!this.state.title && !this.state.body && !this.state.updated) {
       this.setState({ toDashboard: true });
     } else if (this.state.newNote) {
+      // Handle adding a new note
       fetch("http://127.0.0.1:8000/api/add", {
         method: "POST",
         headers: {
@@ -47,9 +59,9 @@ export default class Notespage extends Component {
           title: this.state.title,
           body: this.state.body,
         }),
-      })
-        .then(() => this.setState({ toDashboard: true }))
+      }).then(() => this.setState({ toDashboard: true }));
     } else {
+      // Handle updating an existing note
       if (!this.state.title && !this.state.body) {
         this.handleDelete();
       } else {
@@ -63,13 +75,14 @@ export default class Notespage extends Component {
             body: this.state.body,
           }),
         })
-        .then(() => this.setState({ toDashboard: true }))
-        .catch((err) => console.log(err.message));
+          .then(() => this.setState({ toDashboard: true }))
+          .catch((err) => console.log(err.message));
       }
     }
   };
 
   handleDelete = () => {
+    // Handle deleting an existing note
     fetch(`http://127.0.0.1:8000/api/delete/${this.state.note.id}`, {
       method: "DELETE",
       headers: {
@@ -79,9 +92,11 @@ export default class Notespage extends Component {
   };
 
   render() {
+    // Redirect to the dashboard if needed
     if (this.state.toDashboard === true) {
       return <Navigate to="/" />;
     }
+
     return (
       <main className="notes-container">
         <form className="notes-form">
@@ -97,7 +112,7 @@ export default class Notespage extends Component {
             defaultValue={this.state.body || ""}
             type="text"
             className="input--body"
-            placeholder="whats up..."
+            placeholder="What's up..."
             onChange={(e) => this.setState({ body: e.target.value })}
           />
         </form>
